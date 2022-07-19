@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container justify-content-md-center">
+    <form method="post" asp-controller="UserInport" asp-action="Import" enctype="multipart/form-data">
+        <div class="form-group ">
+            <input type="file" name="file" class="form-control" >
+        </div>
+
+        <br />
+
+        <button type="submit" class="btn btn-outline-success">Import</button>
+    </form>
+</div>

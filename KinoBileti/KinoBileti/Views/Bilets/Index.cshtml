@@ -1,0 +1,87 @@
+﻿@model IEnumerable<KinoBileti.Models.Bilet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bilets</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h6>Prebaruvanje na bileti po datum </h6>
+            <form method="post" asp-controller="Bilets" asp-action="Index">
+                <div class="form-group">
+                    <input type="datetime" name="datum" class="form-control" placeholder="Vnesi datum ">
+                </div>
+                <button type="submit" class="btn btn-outline-success">Search</button>
+            </form>
+        </div>
+        <div class="col-sm">
+            <h6>Export na site bileti</h6>
+            <a class="btn btn-outline-success" asp-action="ExportBilets">Export</a>
+        </div>
+        <div class="col-sm">
+            <h6>Export na bileti spored zanr</h6>
+            <form method="post" asp-controller="Bilets" asp-action="ExportBilets">
+                <div class="form-group ">
+                    <input type="text" name="zanr" class="form-control" placeholder="Vnesi Zanr">
+                </div>
+                <button type="submit" class="btn btn-outline-success">Export</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.zanr)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zanr)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="AddProductToCard" asp-route-id="@item.Id">Add to Cart</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
